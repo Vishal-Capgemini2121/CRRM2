@@ -3,4 +3,6 @@ pandas
 numpy
 #os
 matplotlib
-whitenoise
+whitenoise==6.0.0
+django-crispy-forms
+bootstrap4
