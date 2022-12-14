@@ -1,0 +1,400 @@
+{% extends 'base-figma.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<link href="static/assets/css/style-figma.css" rel="stylesheet">
+<link href="static/assets/css/style-figma.css" rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!--<style>-->
+<!--  th,td{-->
+<!--    border: 1px black solid;-->
+<!--    background-color: #D6EEEE;-->
+<!--  }-->
+<!--</style>-->
+<style>
+        .container {
+            width: 50%
+        }
+        .scroll {
+              overflow-y: scroll;
+              height: 120px;
+              width: 300px;
+              margin: 10px 15px; padding: 5px;
+              text-align: justify;
+          }
+          .scroll::-webkit-scrollbar {
+              width:5px;
+          }
+          .scroll::-webkit-scrollbar-track {
+              -webkit-box-shadow:inset 0 0 0px rgba(0,0,0,0.3);
+              border-radius:5px;
+          }
+          .scroll::-webkit-scrollbar-thumb {
+              border-radius:15px;
+              -webkit-box-shadow: inset 20px 0 10px grey;
+          }
+        .d-flex{
+          display: flex;
+           width: 100%;
+        }
+        .d-flex-col{
+          display: flex;
+          width: 100%;
+          flex-direction: column;
+        }
+        .text-center {
+          text-align: left;
+        }
+        .TabButton {
+            width: 100%;
+            color: #5A5A61;
+            border: 0;
+            border-bottom: 1px solid #e0e0e0;
+            background-color: #003366;
+            margin: 0;
+            font-size: 14px;
+            line-height: 16px;
+            font-weight: normal;
+            padding: 16px;
+            cursor: pointer;
+        }
+        .TabButtonSelected {
+
+          border-bottom-color: #C94927 !important;
+            background-color:  #003366 !important;
+            font-weight: 500;
+        }
+        
+
+        .d-chart-n {
+          display: none;
+        }
+
+        .d-chart-show {
+          display: block;
+        }
+
+        #wrapper11 {
+            display: grid;
+            grid-template-rows: 30px 1fr 30px;
+        }
+
+        #content11 {
+           overflow-y: scroll;
+           width: 830px;
+           height: 340px;
+        }
+
+        /* Optional */
+        #wrapper11 > * {
+           padding: 5px;
+        }
+        #header11 {
+        height: 40px;
+    }
+        .rounded-checkbox {
+          width:15px;
+          height: 15px;
+          border-radius: 50%;
+          vertical-align: middle;
+          border: 1px solid black;
+          appearance: none;
+          -webkit-appearance: none;
+          outline: none;
+          cursor: pointer;
+        }
+        .rounded-checkbox:checked {
+          appearance: auto;
+          clip-path: circle(50% at 50% 50%);
+          background-color: blue;
+        }
+        .tab {
+              overflow: hidden;
+              border-bottom: 1px solid #ccc;
+              background-color: white;
+            }
+
+            .tab button {
+              background-color: inherit;
+              float: left;
+              border: none;
+              outline: none;
+              cursor: pointer;
+              padding: 12px 14px;
+              transition: 0.3s;
+              font-size: 17px;
+            }
+            .tablinks {
+              background-color: #3f87a6;
+              color: white;
+              float: left;
+              border: none;
+              outline: none;
+              cursor: pointer;
+              padding: 14px 16px;
+              font-size: 17px;
+              width: 25%;
+            }
+            .tablinks:hover {
+              background-color: #777;
+            }
+
+            .tab button:hover {
+              background-color: #ddd;
+            }
+
+            .tab button.active {
+              background-color: blue;
+            }
+
+            .tabcontent {
+              display: block;
+              padding: 6px 12px;
+              border: 1px solid #ccc;
+              border-top: none;
+            }
+
+    </style>
+<script>
+        function activeTab(evt, id) {
+
+           // Get all elements with class="tablinks" and remove the class "active"
+            let tabactive = document.getElementsByClassName("TabButtonSelected");
+            tabactive[0].className = tabactive[0].className.replace(" TabButtonSelected", "");
+            document.getElementById(id).style.display = "block";
+            evt.currentTarget.className += " TabButtonSelected";
+            displaySection(evt,id)
+        }
+
+        function displaySection(evt, id) {
+
+            let tabactive = document.getElementsByClassName("tab-section");
+            tabactive[0].className = tabactive[0].className.replace(" d-chart-show", "d-chart-n");
+            // add below line of codes
+            [...document.querySelectorAll('div.tab-section')].forEach(item => item.style.display='none')
+            document.getElementById("Section" + id).style.display = "block";
+            evt.currentTarget.className += " d-chart-show";
+        }
+    </script>
+
+
+<div class="alt-nav" style="height: 60px;">
+
+    <div style="position: absolute;
+    height: 10px;
+    left: 7.80%;
+    right: 38.75%;
+    top: 30%;
+    font-family: 'Ubuntu';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    /* or 117% */
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    /* Typography/On Surface/High Emphasis */
+    color: rgba(39, 41, 54, 0.85);">
+<!--        <a href="#" onclick="history.back()"><img style="margin-right: -5px;" src="static/assets/img/Icon.png"/></a>-->
+<!--        Assessment-->
+       <a href="weight_distribution" style="color:#000000; margin-left:900px;text-decoration: none;">Weightage</a>
+    </div>
+    <button type="button" onclick="history.back()" style="display: none;" id="back-btn"></button>
+    <a href="introduction" style="color:Green; margin-left:80px;" onclick="document.getElementById('back-btn').click()" alt="Back"><img src="static/assets/img/Icon.png" />Back</a>
+    
+</div>
+<body style="background: linear-gradient(3.47deg, #003366 13.28%, #3f87a6 91.28%);
+position: static;
+width: 1350px;
+overflow-x: hidden;
+overflow-y: hidden;
+height: 650px;">
+
+<div class="rect-meta-1" style="height:480px; margin-top: -30px;">
+    <form method="POST" enctype="multipart/form-data" action="score" name="screening_form">
+        {% csrf_token %}
+        <div class="container" id="wrapper11">
+            <div class="d-flex" >
+                <div class="d-flex text-center" style="margin-left: -200px; height: 65px; margin-top: 10px; width:800px;">
+                    <div class="TabButton TabButtonSelected tablinks" id="Tab1" style="width:660px; font-size: 12px; color: white; font-weight: 500; font-family: 'Ubuntu';" onclick="activeTab(event, 'Tab1')"><b>Customer Types*</b></div>
+                    <div class="TabButton tab tablinks" id="Tab2" style="width:650px; font-size: 12px; font-weight: 500; font-family: 'Ubuntu';" onclick="activeTab(event, 'Tab2')">Product Service Opted*</div>
+                    <div class="TabButton tablinks " id="Tab3" style="width:650px; font-size: 12px; font-weight: 500; font-family: 'Ubuntu';" onclick="activeTab(event, 'Tab3')">Jurisdictional Risk*</div>
+                    <div class="TabButton tablinks " id="Tab4" style="width:100px; font-size: 12px; font-weight: 500; font-family: 'Ubuntu';" onclick="activeTab(event, 'Tab4')">Customer Transaction Behavior</div>
+                    <div class="TabButton tablinks" id="Tab5" style="width:650px; font-size: 12px; font-weight: 500; font-family: 'Ubuntu';" onclick="activeTab(event, 'Tab5')">List Matching</div>
+                    <div class="TabButton tablinks" id="Tab6" style="width:650px; font-size: 12px; font-weight: 500; font-family: 'Ubuntu';" onclick="activeTab(event, 'Tab6')">Profile Linkage</div>
+                </div>
+            </div>
+
+            <div class="d-flex-col scroll" id="content11" style="margin-top: 70px; margin-left: -185px; font-size: 13px; font-weight: 400; font-family: 'Ubuntu';">
+                <div id="SectionTab1" class="tab-section d-chart-n d-chart-show" onchange="form_change()">
+                   <table>
+                        <tr>
+                          <th style="margin-top: 30px;">Please select customer categories as follow:</th>
+<!--                          <th>Entity_Type</th>-->
+<!--                          <th>High</th>-->
+<!--                          <th>Medium</th>-->
+<!--                          <th>Low</th>-->
+<!--                          <th>Score</th>-->
+                        </tr>
+                        {% for Customer_Types in cty %}
+                          <tr>
+
+                            <td> <input class="rounded-checkbox " type='checkbox' name="ct{{Customer_Types.id}}" id="ct{{Customer_Types.id}}" value={{Customer_Types.Customer_Category}} style="margin-left: 20px;"> {{Customer_Types.Customer_Category}}</td>
+<!--                            <td>{{Customer_Types.Entity_Type}}</td>-->
+<!--                            <td>{{Customer_Types.High}}</td>-->
+<!--                            <td>{{Customer_Types.Medium}}</td>-->
+<!--                            <td>{{Customer_Types.Low}}</td>-->
+<!--                            <td>{{Customer_Types.Score}}</td>-->
+                          </tr>
+                        {% endfor %}
+                   </table>
+                </div>
+
+                <div id="SectionTab2" class="tab-section d-chart-n" onchange="form_change2()">
+                    <table>
+                        <tr>
+                          <th>Please select Product or Services as follows:</th>
+<!--                          <th>HIGH </th>-->
+<!--                          <th>Medium</th>-->
+<!--                          <th>Low</th>-->
+<!--                          <th>Score</th>-->
+                        </tr>
+                        {% for Product_Service in pds %}
+                          <tr>
+                            <td> <input class="rounded-checkbox " type='checkbox' name="ps{{Product_Service.id}}" id="ps{{Product_Service.id}}" value="{{Product_Service.Product}}" style="margin-left: 20px;"> {{Product_Service.Product}}</td>
+<!--                            <td>{{Product_Service.High}}</td>-->
+<!--                            <td>{{Product_Service.Medium}}</td>-->
+<!--                            <td>{{Product_Service.Low}}</td>-->
+<!--                            <td>{{Product_Service.Score}}</td>-->
+                          </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+
+
+                <div id="SectionTab3" class="tab-section d-chart-n" onchange="form_change3()">
+                      <table>
+                            <tr>
+<!--                              <th>Please select Country or Juridication as follows:</th>-->
+<!--                              <th>GRAY Listed/-->
+<!--                                HIGH Risk</th>-->
+<!--                              <th>Medium</th>-->
+<!--                              <th>Low</th>-->
+<!--                              <th>Score</th>-->
+                            </tr>
+
+                              <tr>
+                                <th>Please select Country or Juridication as follows:</th>
+                                <td><select name="cj" id="cj" style="padding: 10px 70px; border: none; border-radius: 4px;background-color: #e1dcdc; margin-left: 30px; margin-top: 5px; ">
+                                  <option value="Select Country">Select Country</option>
+                                  {% for Juridictional_Risk in jdr %}
+                                    <option value="{{Juridictional_Risk.Country_Juridiction}}">{{Juridictional_Risk.Country_Juridiction}}</option>
+                                  {% endfor %}
+                                </select>
+
+                              </td>
+<!--                                <td>{{Juridictional_Risk.High_Risk}}</td>-->
+<!--                                <td>{{Juridictional_Risk.Medium}}</td>-->
+<!--                                <td>{{Juridictional_Risk.Low}}</td>-->
+<!--                                <td>{{Juridictional_Risk.Score}}</td>-->
+                              </tr>
+
+                      </table>
+                </div>
+
+                <div id="SectionTab4" class="tab-section d-chart-n" style="font-size: 13px; font-weight: 400; font-family: 'Ubuntu';" onchange="form_change4()">
+                      <table class="question-width" style="font-size: 13px; font-weight: 400; font-family: 'Ubuntu';">
+                            <tr>
+                              <th>Please select Transaction Behavior as follows:</th>
+                              <th>Frequency/week</th>
+                              <!--<th>Frequency
+                                ( Per Week)</th>
+<!--                              <th>SCORE</th>
+                              <th>Frequency
+                                ( Per Week)</th>
+<!--                              <th>SCORE</th>
+                              <th>Frequency
+                                ( Per Week)</th>
+<!--                              <th>Score</th>-->
+                            </tr>
+                            {% for Transaction_Behavior in tsb %}
+                              <tr>
+                                <td style=" padding-right: 100px; ">{{Transaction_Behavior.Transaction}}</td>
+                                <td><select name="tb{{Transaction_Behavior.id}}" id="tb{{Transaction_Behavior.id}}" style="padding: 6px 20px; border: none; border-radius: 4px;background-color: #e1dcdc;">
+                                  <option value="None">None</option>
+                                  <option value="{{Transaction_Behavior.Frquency_one}}">{{Transaction_Behavior.Frquency_one}}</option>
+                                  <option value="{{Transaction_Behavior.Frquency_Two}}">{{Transaction_Behavior.Frquency_Two}}</option>
+                                  <option value="{{Transaction_Behavior.Frquency_Three}}">{{Transaction_Behavior.Frquency_Three}}</option>
+
+                                </select></td>
+                               <!-- <td> <input type='radio'> {{Transaction_Behavior.Frquency_one}}</td>
+<!--                                <td>{{Transaction_Behavior.Score_one}}</td>
+                                <td> <input type='radio'> {{Transaction_Behavior.Frquency_Two}}</td>
+<!--                                <td>{{Transaction_Behavior.Score_two}}</td>
+                                <td> <input type='radio'> {{Transaction_Behavior.Frquency_Three}}</td>
+<!--                                <td>{{Transaction_Behavior.Score_three}}</td>-->
+                              </tr>
+                            {% endfor %}
+                      </table>
+                </div>
+
+                <div id="SectionTab5" class="tab-section d-chart-n" onchange="form_change5()">
+                    <table>
+                      <tr>
+                        <th>Please select List name as follows:</th>
+<!--                          <th>VERY HIGH-->
+<!--                            100% match</th>-->
+<!--                          <th>HIGH-->
+<!--                            80%-99% match</th>-->
+<!--                          <th>MEDIUM-->
+<!--                            <80% match</th>-->
+                      </tr>
+                      {% for List_Matching in ltm %}
+                        <tr>
+                          <!-- <td> <input class="rounded-checkbox " type='checkbox' name="lm{{List_Matching.id}}" id="lm{{List_Matching.id}}" value="{{List_Matching.List_Name}}"> {{List_Matching.List_Name}}</td> -->
+                          <td style=" padding-right: 100px; ">{{List_Matching.List_Name}}</td>
+                          <td><select name="lm{{List_Matching.id}}" id="lm{{List_Matching.id}}" style="padding: 6px 20px; border: none; border-radius: 4px;background-color: #e1dcdc;">
+                            <option value="None">None</option>
+                            <option value="{{List_Matching.Very_High}}">Very High 100% match</option>
+                            <option value="{{List_Matching.High}}">High between 80% to 99% match</option>
+                            <option value="{{List_Matching.Medium}}">Medium < 80% match</option>
+<!--                            <td>{{List_Matching.Very_High}}</td>-->
+<!--                            <td>{{List_Matching.High}}</td>-->
+                              <!--                            <td>{{List_Matching.Medium}}</td>--></select>
+                        </tr>
+                      {% endfor %}
+                    </table>
+                </div>
+
+                <div id="SectionTab6" class="tab-section d-chart-n" onchange="form_change5()">
+                    <table>
+                        <tr>
+                          <th>Please select Parameters as follows:</th>
+<!--                          <th>High</th>-->
+<!--                          <th>Medium</th>-->
+<!--                          <th>Low</th>-->
+<!--                          <th>Score</th>-->
+                        </tr>
+                        {% for Profile_linkage in pfl %}
+                          <tr>
+                            <td> <input class="rounded-checkbox " type='checkbox' name="pl{{Profile_linkage.id}}" id="pl{{Profile_linkage.id}}" value="{{Profile_linkage.Parameters}}" style="margin-left: 20px;"> {{Profile_linkage.Parameters}}</td>
+<!--                            <td>{{Profile_linkage.High}}</td>-->
+<!--                            <td>{{Profile_linkage.Medium}}</td>-->
+<!--                            <td>{{Profile_linkage.Low}}</td>-->
+<!--                            <td>{{Profile_linkage.Score}}</td>-->
+                          </tr>
+                        {% endfor %}
+
+                    </table>
+                    <button class="proceed-index-button" type="submit" style="font-size: 12px; margin-left: 500px; margin-top: 50px;"><b>Proceed</b></button>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+{% endblock %}
+</body>
+
+</html>
