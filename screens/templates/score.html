@@ -213,7 +213,7 @@ th, td {
 <main id="main">
     
     <button type="button" onclick="history.back()" style="display: none;" id="back-btn"></button>
-    <a href="#" style="color:Green; margin-left:10px;" onclick="document.getElementById('back-btn').click()" alt="Back"><img src="static/assets/img/Icon.png" />Back</a>
+    <a href="#" style="color:Green; margin-left:100px;" onclick="document.getElementById('back-btn').click()" alt="Back"><img src="static/assets/img/Icon.png" />Back</a>
     <h3  style="margin-left:120px; margin-top:30px;"><b>Score Details</b></h3>
     <h4 class="sub_head_final" style="margin-left:120px; font-size:18px; font-family: Ubuntu;  font-weight: 400; line-height: 21px; ">This is the final calculated score</h4>
 
@@ -288,23 +288,26 @@ th, td {
                     {% if final_ct_score >= 31 and final_ct_score <= 60  %}
                       <p>Customer Categories,</p>
                     {% endif %}
-                    {% if final_ps_score >= 31 or final_ps_score <= 60 %}
+                    {% if final_ps_score >= 31 and final_ps_score <= 60 %}
                       <p>Product Service,</p>
                     {% endif %}
                     {% if jdr1 >= 31 and jdr1 <= 60  %}
                       <p>Juridictional Risk,</p>
                     {% endif %}
-                    {% if final_pl_score >= 30 and final_pl_score <= 60 %}
+                    {% if final_pl_score >= 31 and final_pl_score <= 60 %}
                       <p>Profile linkage,</p>
                  {% endif %}
                </ul>
                 <ul class="low">
                   <p style="margin-top: -2px;"><img class="image0" style="width: 30px;height: 30px;" src="static/assets/img/bg/low.png">Low Impact Category:
-                    
-                  {%if lm <= 30 %}
+                {% if lm == 0 %}
+                  <p></p>
+                {% elif lm <= 30 %}
                   <p>List Matching,</p>
                 {% endif %}
-                {% if final_tsb_score <= 30 %}
+                {% if final_tsb_score == 0 %}
+                  <p></p>
+                {% elif final_tsb_score <= 30 %}
                   <p>Customer Transaction Behavior,</p>
                 {% endif %}
                 {% if final_ct_score <= 30 %}
@@ -316,24 +319,26 @@ th, td {
                 {% if jdr1 <= 30 %}
                   <p>Juridictional Risk,</p>
                 {% endif %}
-                {% if final_pl_score <= 30 %}
+                {% if final_pl_score == 0 %}
+                  <p></p>
+                {% elif final_pl_score <= 30 %}
                   <p>Profile linkage,</p>
                 {% endif %}
                 </ul>
               <tbody>
-                
+
                 <tr>
                     <th scope="row" class="table-active">Categories</th>
                     <th scope="row" class="table-active">Score</th>
                     <th scope="row" class="table-active">Risk Category</th>
-                  </tr> 
+                  </tr>
                 <tr>
                   <td><button type="button" class="collapsible">Customer Categories         <i class="arrow down"></i> </button>
-                    
+
                     <div class="content">
                       <p>{{ct1}}</p></td>
                     <td>{{final_ct_score}}</td>
-                    
+
                     <td>
                       {%if final_ct_score <= 30 %}
                         <a href="#" data-toggle="tooltip" data-placement="right" title="Score Range: 0-30" style="color:Green;font-weight: bold;text-decoration:None">Low</a>
@@ -350,7 +355,7 @@ th, td {
                     <div class="content">
                       <p>{{ps1}}</p></td>
                     <td>{{final_ps_score}}</td>
-                     
+
                     <td>
                       {%if final_ps_score <= 30 %}
                         <a href="#" data-toggle="tooltip" data-placement="right" title="Score Range: 0-30" style="color:Green;font-weight: bold;text-decoration:None">Low</a>
@@ -379,7 +384,7 @@ th, td {
                 <tr>
                     <td><button type="button" class="collapsible">Customer Transaction behaviour          <i class="arrow down"></i></button>
                       <div class="content">
-                        <p>{{tsb1}}</p></td>
+                        <p>{{tsb3}}</p></td>
                     <td> {{final_tsb_score}}</td>
                     <td>
                       {%if final_tsb_score <= 30 %}
@@ -406,16 +411,16 @@ th, td {
                       {% endif %}
                     </td>
                 </tr>
-                <tr>  
+                <tr>
                   <td><button type="button" class="collapsible">Profile linkage         <i class="arrow down"></i></button>
                       <div class="content">
                         <p>{{pl1}}</p></td>
-                    
+
                     <td>{{final_pl_score}}</td>
                     <td>
                       {%if final_pl_score <= 30 %}
                         <a href="#" data-toggle="tooltip" data-placement="right" title="Score Range: 0-30" style="color:Green;font-weight: bold;text-decoration:None">Low</a>
-                      {%elif final_pl_score <= 30 or final_pl_score >= 60 %}
+                      {%elif final_pl_score <= 31 or final_pl_score <= 60 %}
                         <a href="#" data-toggle="tooltip" data-placement="right" title="Score Range: 31-60"style="color:rgb(192, 192, 3);font-weight: bold;text-decoration:None">Medium</a>
                       {% else %}
                         <a href="#" data-toggle="tooltip" data-placement="right" title="Score Range: 61-100" style="color:red;font-weight: bold;text-decoration:None">High</a>
@@ -452,7 +457,7 @@ th, td {
             </div>
 
     </div>
-</div>
+</main>
 <script>
   var coll = document.getElementsByClassName("collapsible");
   var i;

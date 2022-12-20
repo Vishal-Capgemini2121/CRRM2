@@ -12,6 +12,12 @@
     <p class="esg_title">CRRM-Tool</p>
     <p class="esg_sub_title">Welcome. Please log in to your account.</p>
     <div class="login-form">
+    <div class ="form-group" style =" width: 350px; margin-left:10px; padding-bottom: 20px; margin-top: 2px">
+        {% if text %}
+            <div style="height: 20px; position: absolute; margin-top: -30px; margin-left: 60px; width:300px;">
+               <p style="font-size: 12px; color: red; ">Invalid Username or Password!</p>
+            </div>
+        {% endif %}
         <form method="POST">
             <fieldset class="form-group">
                 {% csrf_token %}
@@ -28,6 +34,7 @@
                 </div>
             </fieldset>
         </form>
+    </div>
     </div>
 </div >
 {% endblock %}
